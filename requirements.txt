@@ -5,3 +5,4 @@ requests
 pandas
 Flask
 gunicorn
+typing-extensions
