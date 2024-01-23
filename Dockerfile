@@ -1,16 +1,21 @@
-FROM cypress/browsers:latest
+# Use a slim Python image
+FROM python:3.9-slim
 
+# Set working directory
+WORKDIR /app
 
-RUN apt-get install python3 -y
+# Copy just the requirements.txt initially to leverage Docker cache
+COPY requirements.txt .
 
-RUN echo $(python3 -m site --user-base)
+# Install dependencies
+RUN apt-get update && apt-get install -y \
+    # Add any system dependencies here
+    && rm -rf /var/lib/apt/lists/* \
+    && pip install --no-cache-dir -r requirements.txt  
 
-COPY requirements.txt  .
-
-ENV PATH /home/root/.local/bin:${PATH}
-
-RUN  apt-get update && apt-get install -y python3-pip && pip install -r requirements.txt  
-
+# Copy the rest of the application
 COPY . .
+
+
 
 CMD ["gunicorn", "app:app"]
