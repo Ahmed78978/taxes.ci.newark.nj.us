@@ -1,5 +1,4 @@
 from bs4 import BeautifulSoup
-from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 import requests
 import pandas as pd
 from flask import Flask, request, jsonify
@@ -41,8 +40,7 @@ def fetch_account_data(page_num):
         "(KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
     )
     scraped_data = {}
-    caps = DesiredCapabilities().CHROME
-    caps["pageLoadStrategy"] = "none"  # Use "eager" to wait for DOMContentLoaded or "normal" for full page load
+    
 
     options.add_argument(f"--user-agent={windows_user_agent}")
     options.add_argument("--window-size=1920,1080")
