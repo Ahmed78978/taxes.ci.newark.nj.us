@@ -7,3 +7,4 @@ Flask
 gunicorn
 typing-extensions
 lxml
+gevent
