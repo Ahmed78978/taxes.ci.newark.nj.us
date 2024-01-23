@@ -1,0 +1,6 @@
+beautifulsoup4
+selenium
+selenium-wire
+requests
+pandas
+Flask
