@@ -48,7 +48,7 @@ def fetch_account_data(page_num):
 
     driver.get(
         f'https://taxes.ci.newark.nj.us/ViewPay?accountNumber={str(account_number)}')
-   
+    time.sleep(3)
     headers = {
         "Host": "taxes.ci.newark.nj.us",
         "Sec-Ch-Ua": "\"Not_A Brand\";v=\"8\", \"Chromium\";v=\"120\"",
@@ -67,12 +67,14 @@ def fetch_account_data(page_num):
         "Priority": "u=0, i",
             }
 
-    
+    headerss = ''
+    for request in driver.requests:
+        if request.response:
+            headerss = request.headers
 
     driver.get(
         f'https://taxes.ci.newark.nj.us/?page={page_num}')
     cookies=driver.get_cookies()
-    driver.quit()
     cookies_dict = {}
     for cookie in cookies:
         cookies_dict[cookie['name']] = cookie['value']
@@ -89,7 +91,7 @@ def fetch_account_data(page_num):
 
     response = requests.get(url, headers=headers,cookies=cookies_dict, params=querystring)
     print(response.text)
-    
+    driver.quit()
     soup = BeautifulSoup(response.text, 'lxml')
 
     # Find the table
