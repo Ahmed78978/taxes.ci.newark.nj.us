@@ -4,3 +4,4 @@ selenium-wire
 requests
 pandas
 Flask
+gunicorn
