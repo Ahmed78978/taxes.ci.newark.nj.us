@@ -88,7 +88,7 @@ def fetch_account_data(page_num):
     querystring = {"page": str(page_num)}
 
     response = requests.get(url, headers=headers,cookies=cookies_dict, params=querystring)
-    #print(response.text)
+    print(response.text)
     
     soup = BeautifulSoup(response.text, 'lxml')
 
