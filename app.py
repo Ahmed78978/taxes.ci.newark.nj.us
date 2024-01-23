@@ -101,9 +101,11 @@ def fetch_account_data(page_num):
         first_td = row.find('td')
         if first_td:
             account_numbers.append(first_td.get_text(strip=True))
-
+    print(account_numbers)
     # Iterate over each account number
+    all_combined_data = []
     for account_number in account_numbers:
+        print(account_number)
         url = "https://taxes.ci.newark.nj.us/ViewPay"
 
         querystring = {"accountNumber": str(account_number)}
@@ -116,8 +118,10 @@ def fetch_account_data(page_num):
         secondtable = extract_data_from_html(account_data)
         print(table_data)
         combined_data = {**rowdat, **table_data, **secondtable}
+        all_combined_data.append(combined_data)
 
-        df = pd.DataFrame([combined_data])
+
+    df = pd.DataFrame(all_combined_data)
         
 
         #print(account_data)
