@@ -118,7 +118,7 @@ def fetch_account_data(page_num):
         combined_data = {**rowdat, **table_data, **secondtable}
 
         df = pd.DataFrame([combined_data])
-        time.sleep(1)
+        time.sleep(5)
 
         #print(account_data)
 
