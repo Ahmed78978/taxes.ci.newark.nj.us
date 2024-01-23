@@ -6,3 +6,4 @@ pandas
 Flask
 gunicorn
 typing-extensions
+lxml
