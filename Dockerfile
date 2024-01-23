@@ -18,4 +18,4 @@ COPY . .
 
 
 
-CMD ["gunicorn", "app:app"]
+CMD gunicorn --worker-class=gevent --worker-connections=1000 --workers=1 app:app 
